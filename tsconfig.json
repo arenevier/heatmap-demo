@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src/",
+    "esModuleInterop": true,
+    "strict": true,
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "target": "ES2022",
+    "outDir": "./dist"
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"]
+}
