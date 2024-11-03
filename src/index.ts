@@ -79,7 +79,26 @@ async function main() {
 
   app.use(serve("html"));
   app.use(mainRouter.routes());
-  app.listen(MAIN_PORT);
+  const server = app.listen(MAIN_PORT);
+
+  ['SIGTERM', 'SIGINT'].forEach((signal) => {
+    process.once(signal, async () => {
+      await pg_client.end();
+
+      await new Promise<void>((resolve, reject) => {
+        server.close((err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
+      });
+
+      process.exit()
+    });
+  });
+
 }
 
 main();
