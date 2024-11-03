@@ -594,10 +594,10 @@ accepts@^1.3.5:
     mime-types "~2.1.34"
     negotiator "0.6.3"
 
-activities-heatmap@^0.2.0:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/activities-heatmap/-/activities-heatmap-0.2.1.tgz#cbaf858709254df9b3ec700a2679227cc8400d51"
-  integrity sha512-SCvuyqebHFY7mQ3B0VPwXBCGOJBnmDnwAxrbXyeClkY947b4MCSnPoXfOuCdpn5L3vfjuFUjyF8MpSWVAlKUVg==
+activities-heatmap@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/activities-heatmap/-/activities-heatmap-0.3.0.tgz#f89fee49d096ff78d9502f7e8dca9d317c1233f9"
+  integrity sha512-U/+IjFZCR0NJse4Fl/mIOEGUBHkNB6A2TYIaxu7aB+0+w2c+nmexvUqHainFQVd9z72dm4ThlB8I7l53kC6U8w==
   dependencies:
     "@garmin/fitsdk" "^21.141.0"
     "@turf/bbox-clip" "^7.1.0"

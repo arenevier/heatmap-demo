@@ -26,17 +26,16 @@ async function main() {
   const app = new Koa();
   const mainRouter = new Router();
 
-  const pg_client = new pg.Client({
+  const pg_pool = new pg.Pool({
     user: process.env.DB_USER,
     database: process.env.DB_NAME,
     port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : undefined,
     password: process.env.DB_PASSWORD,
     host: process.env.DB_HOST,
   });
-  await pg_client.connect();
 
   // Activities are stored in a PostGIS table. The table must follow the schema described in https://github.com/arenevier/activities-heatmap/blob/main/src/datasource/PostgisDB.ts
-  const dataSource = new PostgisDB(pg_client, ACTIVITIES_TABLE_NAME);
+  const dataSource = new PostgisDB(pg_pool, ACTIVITIES_TABLE_NAME);
   await dataSource.init();
 
   //  if you want to use strava bulk export instead, you can use the following code (assuming the zip file in named "export_23048086.zip")
@@ -83,7 +82,7 @@ async function main() {
 
   ['SIGTERM', 'SIGINT'].forEach((signal) => {
     process.once(signal, async () => {
-      await pg_client.end();
+      await pg_pool.end();
 
       await new Promise<void>((resolve, reject) => {
         server.close((err) => {
